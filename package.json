@@ -1,0 +1,24 @@
+{
+  "name": "saucedemo-playwright",
+  "version": "1.0.0",
+  "description": "Playwright E2E test suite for SauceDemo using Typescript",
+  "scripts": {
+    "test":              "npx playwright test",
+    "test:dev":          "ENV=dev npx playwright test",
+    "test:staging":      "ENV=staging npx playwright test",
+    "test:prod":         "ENV=prod npx playwright test",
+    "test:headed":       "ENV=dev npx playwright test --headed",
+    "test:ui":           "ENV=dev npx playwright test --ui",
+    "test:checkout":     "ENV=dev npx playwright test tests/checkout.spec.ts",
+    "test:login":        "ENV=dev npx playwright test tests/login.spec.ts",
+    "test:report":       "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/node":      "^20.0.0",
+    "typescript":       "^5.4.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  }
+}
