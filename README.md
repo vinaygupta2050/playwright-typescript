@@ -57,10 +57,7 @@ saucedemo-playwright/
 ├── utils/
 │   └── test-data.ts                   # Constants: products, routes, error messages
 │
-├── .env.example                       # ✅ Committed — safe template with all variable names
-├── .env.dev                           # ❌ Not committed — local dev credentials
-├── .env.staging                       # ❌ Not committed — staging credentials
-├── .env.prod                          # ❌ Not committed — production credentials
+├── .env.dev                       # Env details
 ├── .gitignore
 ├── Jenkinsfile                        # Jenkins declarative pipeline
 ├── package.json
