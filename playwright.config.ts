@@ -1,7 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import { CONFIG, ENV_NAME } from './config/env.config';
+
+console.log(`\n🌍 Running tests against environment: ${ENV_NAME.toUpperCase()}\n`);
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -11,28 +14,45 @@ export default defineConfig({
     ['list'],
   ],
   use: {
-    baseURL: 'https://www.saucedemo.com',
-    trace: 'on-first-retry',
+    baseURL:    CONFIG.baseUrl,
+    trace:      'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'on-first-retry',
-    headless: true,
+    video:      'on-first-retry',
+    headless:   true,
   },
   projects: [
+    // ── UI test projects ───────────────────────────────────────────────────────
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name:    'chromium',
+      testDir: './tests',
+      use:     { ...devices['Desktop Chrome'] },
     },
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name:    'firefox',
+      testDir: './tests',
+      use:     { ...devices['Desktop Firefox'] },
     },
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name:    'webkit',
+      testDir: './tests',
+      use:     { ...devices['Desktop Safari'] },
     },
     {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 5'] },
+      name:    'mobile-chrome',
+      testDir: './tests',
+      use:     { ...devices['Pixel 5'] },
+    },
+
+    // ── API test project ───────────────────────────────────────────────────────
+    // API tests run headlessly with no browser — just HTTP via Playwright's
+    // APIRequestContext. Runs against restful-booker.herokuapp.com directly.
+    {
+      name:    'api',
+      testDir: './api/tests',
+      use:     {
+        // no browser needed for API tests
+        baseURL: 'https://restful-booker.herokuapp.com',
+      },
     },
   ],
 });

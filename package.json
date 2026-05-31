@@ -1,7 +1,7 @@
 {
   "name": "saucedemo-playwright",
   "version": "1.0.0",
-  "description": "Playwright E2E test suite for SauceDemo using Typescript",
+  "description": "Playwright E2E + API test suite using Page Object Model",
   "scripts": {
     "test":              "npx playwright test",
     "test:dev":          "ENV=dev npx playwright test",
@@ -11,14 +11,22 @@
     "test:ui":           "ENV=dev npx playwright test --ui",
     "test:checkout":     "ENV=dev npx playwright test tests/checkout.spec.ts",
     "test:login":        "ENV=dev npx playwright test tests/login.spec.ts",
+    "test:api":          "npx playwright test --project=api",
+    "test:api:auth":     "npx playwright test --project=api api/tests/auth.api.spec.ts",
+    "test:api:booking":  "npx playwright test --project=api api/tests/get-booking.api.spec.ts",
+    "test:api:create":   "npx playwright test --project=api api/tests/create-booking.api.spec.ts",
+    "test:api:update":   "npx playwright test --project=api api/tests/update-booking.api.spec.ts",
+    "test:api:delete":   "npx playwright test --project=api api/tests/delete-booking.api.spec.ts",
+    "test:api:e2e":      "npx playwright test --project=api api/tests/booking-lifecycle.api.spec.ts",
     "test:report":       "npx playwright show-report"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
     "@types/node":      "^20.0.0",
+    "cross-env":        "^7.0.3",
     "typescript":       "^5.4.0"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.0"
   }
 }
