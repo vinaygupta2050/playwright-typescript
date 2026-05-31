@@ -1,4 +1,4 @@
-# 🧪 SauceDemo Playwright Test Suite
+# 🧪 Playwright Test Suite
 
 End-to-end **UI** and **API** test automation using **Playwright** + **TypeScript**.
 
